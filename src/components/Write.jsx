@@ -1,9 +1,12 @@
 import {useState} from "react";
 import app from "../firebaseConfig";
 import { getDatabase, ref, set, push } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 import "../index.css"
 
 const Write = () => {
+
+    const navigate = useNavigate();
 
     const [animalName, setAnimalName] = useState('');
     const [animalDesc, setAnimalDesc] = useState('');
@@ -23,7 +26,7 @@ const Write = () => {
 
     return (
       <div>
-        <h1 className="text-center">Write</h1>
+        <h1 className="text-center">WRITE PAGE</h1>
         <section id="Animal">
           <div>
             <label htmlFor="animalName">Animal Name :</label>
@@ -43,8 +46,15 @@ const Write = () => {
               onChange={(e) => setAnimalDesc(e.target.value)}
             />
           </div>
-        <button onClick={saveAnimal}>Save Animal</button>
+          <button onClick={saveAnimal}>Save Animal</button>
         </section>
+
+        <button type="button" onClick={() => navigate("/read")}>
+          GO TO READ PAGE
+        </button>
+        <button type="button" onClick={() => navigate("/updateread")}>
+          GO TO UPDARE READ PAGE
+        </button>
       </div>
     );
 }
