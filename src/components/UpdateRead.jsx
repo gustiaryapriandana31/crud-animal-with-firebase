@@ -1,6 +1,6 @@
 import { useState } from "react";
 import app from "../firebaseConfig";
-import { getDatabase, ref, get } from "firebase/database";
+import { getDatabase, ref, get, remove } from "firebase/database";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
 
@@ -29,6 +29,14 @@ function UpdateRead() {
         }
     };
 
+    const deleteAnimal = async (animalIdParam) => {
+        const db = getDatabase(app);
+        const dbRef = ref(db, "animals/" + animalIdParam);
+        await remove(dbRef);
+        window.location.reload();
+
+    }
+
     return (
       <div>
         <h1 className="text-center">UPDATE READ PAGE</h1>
@@ -40,6 +48,7 @@ function UpdateRead() {
             <li key={index}>
               {animal.animalName} : {animal.animalDesc} : {animal.animalId}
               <button type="button" onClick={() => navigate(`/updatewrite/${animal.animalId}`)}>UPDATE</button>
+              <button type="button" onClick={() => deleteAnimal(animal.animalId)}>DELETE</button>
             </li>
           ))}
         </ul>
