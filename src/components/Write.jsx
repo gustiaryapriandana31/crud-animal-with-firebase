@@ -1,6 +1,7 @@
 import {useState} from "react";
 import app from "../firebaseConfig";
 import { getDatabase, ref, set, push } from "firebase/database";
+import "../index.css"
 
 const Write = () => {
 
@@ -9,7 +10,7 @@ const Write = () => {
 
     const saveAnimal = async () => {
         const db = getDatabase(app);
-        const newDocRef = push(ref(db, 'animals'));
+        const newDocRef = push(ref(db, "animals"));
         set(newDocRef, {
             animalName: animalName,
             animalDesc: animalDesc
@@ -22,19 +23,28 @@ const Write = () => {
 
     return (
       <div>
-        <h1>Write</h1>
-        <input
-          type="text"
-          value={animalName}
-          onChange={(e) => setAnimalName(e.target.value)}
-        />
-        <input
-          type="text"
-          value={animalDesc}
-          onChange={(e) => setAnimalDesc(e.target.value)}
-        />
-
+        <h1 className="text-center">Write</h1>
+        <section id="Animal">
+          <div>
+            <label htmlFor="animalName">Animal Name :</label>
+            <input
+              type="text"
+              value={animalName}
+              name="animalName"
+              onChange={(e) => setAnimalName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="animalDesc">Animal Description :</label>
+            <input
+              type="text"
+              name="animalDesc"
+              value={animalDesc}
+              onChange={(e) => setAnimalDesc(e.target.value)}
+            />
+          </div>
         <button onClick={saveAnimal}>Save Animal</button>
+        </section>
       </div>
     );
 }
