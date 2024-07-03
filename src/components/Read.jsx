@@ -38,7 +38,7 @@ function Read() {
           GO TO HOMEPAGE
         </button>
         <button type="button" onClick={() => navigate("/updateread")}>
-          GO TO UPDARE READ PAGE
+          GO TO UPDATE READ PAGE
         </button>
       </div>
     );

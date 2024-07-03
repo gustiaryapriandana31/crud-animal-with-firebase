@@ -34,7 +34,6 @@ function UpdateRead() {
         const dbRef = ref(db, "animals/" + animalIdParam);
         await remove(dbRef);
         window.location.reload();
-
     }
 
     return (
